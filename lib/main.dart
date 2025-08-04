@@ -1,3 +1,4 @@
+import 'package:aplikasi_pertama/views/detail-product.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,12 +36,9 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   List<Product> products = [
-    Product(title: 'Headphone', price: 12141, img: img1),
-    Product(title: 'Parfurm', price: 214124, img: img2),
-    Product(title: 'Sepatu', price: 12415, img: img3),
-    Product(title: 'Headphone', price: 12141, img: img1),
-    Product(title: 'Parfum', price: 214124, img: img2),
-
+    Product(title: 'Headphone', price: 12141, img: img2),
+    Product(title: 'Parfurm', price: 214124, img: img3),
+    Product(title: 'Sepatu', price: 12415, img: img1),
   ];
 
   @override
@@ -122,9 +120,11 @@ class HomePage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailProduct(name: products[index].title, price: products[index].price, img: products[index].img,)));
+                                },
                                 label: Text(
-                                  "Add to Cart",
+                                  "view",
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 icon: Icon(
