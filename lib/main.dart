@@ -1,4 +1,4 @@
-import 'package:aplikasi_pertama/views/detail-product.dart';
+import 'package:aplikasi_pertama/views/product_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,28 +18,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final String img1 =
-    'https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-final String img2 =
-    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-final String img3 =
-    'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=704&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
-class Product {
-  final String title;
-  final String img;
-  final int price;
-  Product({required this.title, required this.price, required this.img});
-}
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  List<Product> products = [
-    Product(title: 'Headphone', price: 12141, img: img2),
-    Product(title: 'Parfurm', price: 214124, img: img3),
-    Product(title: 'Sepatu', price: 12415, img: img1),
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -62,88 +46,7 @@ class HomePage extends StatelessWidget {
         ],
         toolbarHeight: 70,
       ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-
-        child: Column(
-          spacing: 10,
-          children: [
-            // categoryScroll(),
-            Image.network(
-              "https://images.unsplash.com/photo-1725189370192-f08430f6928b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 100,
-            ),
-
-            category(),
-
-            Expanded(
-              child: ListView.builder(
-                itemCount: products.length,
-                itemBuilder: (BuildContext context, index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      spacing: 10,
-                      children: [
-                        Image.network(
-                          products[index].img,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                products[index].title,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                                softWrap: true, // biar teks bisa kebungkus
-                                overflow: TextOverflow.visible,
-                              ),
-                              Text(
-                                "IDR ${products[index].price}",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  shadowColor: null,
-                                  backgroundColor: Colors.blue,
-                    
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailProduct(name: products[index].title, price: products[index].price, img: products[index].img,)));
-                                },
-                                label: Text(
-                                  "view",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                icon: Icon(
-                                  Icons.shopping_cart,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: ProductList()
     );
   }
 
